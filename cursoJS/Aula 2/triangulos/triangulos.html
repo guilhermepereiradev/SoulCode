@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangulos</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        img {
+            width: 90%;
+        }
+        form{
+            max-width: 400px;
+            margin: auto;
+        }
+        input{
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Classificação do seu triangulo</h1>
+    <form>
+        <input type="number" name="a" id="a">
+        <input type="number" name="b" id="b">
+        <input type="number" name="c" id="c">
+        <input type="button" value="Classificar" onclick="triangulo()">
+    </form>
+    <div id="div"></div>
+    <script src="triangulos.js"></script>
+</body>
+</html>

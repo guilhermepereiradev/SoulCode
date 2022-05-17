@@ -1,0 +1,152 @@
+body {
+    background-color: rgb(58, 58, 58);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+header {
+    width: 100%;
+    min-height: 150px;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    color: white;
+}
+
+header > h1 {
+    color: white;
+    padding-top: 40px;
+    margin: 0;
+}
+nav {
+    display: block;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.hLink {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+    color: white;
+}
+
+a:hover {
+    background-color: white;
+    color: black;
+}
+
+main {
+    background-color: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+    text-align: justify;
+}
+
+.img {
+    display: block;
+    margin: 30px auto;
+    max-width: 100%;
+}
+
+.listas {
+    columns: 3;
+    margin: 20px;
+}
+
+.listas > ul {
+    margin: 0;
+}
+
+table {
+    position: relative;
+    margin: auto;
+    border: 1px solid rgb(58, 58, 58);
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table th{
+    width: 100px;
+    text-align: center;
+    border: 1px solid black;
+    margin: 0 5px;
+    padding: 5px;
+    background-color: rgb(58, 58, 58);
+    color: white;
+}
+
+table td{
+    border: 1px solid black;
+    padding: 3px;
+}
+
+input, #mensagem {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: 350px;
+}
+
+input[type=submit]{
+    width: 300px;
+    font-weight: bold;
+    background-color: rgb(58, 58, 58);
+    border: 1px solid rgb(58, 58, 58);
+    color: white;
+    border-radius: 10px;
+    transition: 0.5s;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+input[type=submit]:hover{
+    transform: scale(1.2);
+}
+
+
+.voltar {
+    font-weight: bolder;
+    margin-top: 50px;
+    text-align: center;
+}
+.voltar > a{
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+    color: rgb(58, 58, 58);
+}
+
+
+.voltar > a:hover{
+    background-color: rgb(58, 58, 58);
+    color: white;
+}
+
+footer {
+    width: 100%;
+    min-height: 100px;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    color: white;
+}
+
+footer > p {
+    padding-top: 40px;
+}
+
+.fLink {
+    text-decoration: none;
+    color: white;
+}
+
+.fLink:hover {
+    background-color: black;
+    color: white;
+}
