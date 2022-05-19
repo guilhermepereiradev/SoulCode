@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,800&display=swap');
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --corAzul: #002455;
+    --corBranca: #ECEFF0;
+}
+
+body{
+    color: var(--corAzul);
+    background-color: var(--corBranca);
+}
+header{
+    display: flex;
+    width: 100%;
+    min-height: 150px;
+    background-color: var(--corAzul);
+    justify-content: center;
+}
+
+.menu {
+    display: inline-block;
+    line-height: 150px;
+}
+.linkMenu {
+    color: var(--corBranca);
+    text-decoration: none;
+    transition: 0.5s;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.linkMenu:hover{
+    background-color: var(--corBranca);
+    color: var(--corAzul);
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.imagens {
+    width: 100%;
+}
+
+
+.titulos{
+    text-align: center;
+    clear: left;
+    margin: 20px ;
+}
+
+p {
+    margin: 5px;
+    padding: 10px;
+    text-align: justify;
+}
+.escudo {
+    width: 150px;
+    height: 150px;
+}
+.escudos{
+    display: flex;
+    margin: 20px auto;
+    justify-content: center;
+}
+
+.camisas {
+    margin: auto;
+    padding: 30px 0px;
+    
+}
+
+.camisas li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    vertical-align: top;
+    margin: 0px 1.5%;
+    box-sizing: border-box;
+}
+
+
+.textoLista{
+    text-align: center;
+    line-height: normal;
+}
+.listaTrofeus{
+   list-style-type: none;
+   margin: 10px auto;
+   max-width: 80%;
+}
+
+.listaTrofeus li{
+    display: inline-block;
+}
+.imagensTrofeus{
+    display: inline-block;
+    height: 300px;
+    float: left;
+    margin: 10px;
+}
+
+.listaTrofeus p {
+    display: inline;
+    line-height: 300px;    
+}
+.botao{
+    margin: 20px auto;
+}
+.botao a {
+    color: var(--corBranca);
+    background-color: var(--corAzul);
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    margin: auto;
+    width: 140px;
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+.botao a:hover{
+    transform: scale(1.2);
+}
+
+footer{
+    display: flex;
+    width: 100%;
+    min-height: 150px;
+    background-color: var(--corAzul);
+    justify-content: center;
+    line-height: 150px;
+    color: var(--corBranca);
+    font-weight: bold;
+    font-size: 1.5em;
+}

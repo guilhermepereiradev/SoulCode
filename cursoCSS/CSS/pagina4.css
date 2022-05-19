@@ -1,0 +1,83 @@
+/* Display
+    -block
+    -inline
+    -inline-block
+    -flex
+*/
+
+/* display: block - especifica que o elemento vai ocupar toda a linha 
+- div
+- títulos
+- parágrafos
+- form
+- header
+- section
+- footer
+*/
+
+
+/* display: inline - especifica que o elemento não ocupa a linha toda e nem inicia uma próxima linha.
+- a
+- img
+- span
+ */
+.emBloco {
+    background-color: blue;
+    color: aliceblue;
+}
+
+.emLinha {
+    background-color: violet;
+    color: antiquewhite;
+}
+
+.blocoEmlinha {
+    display: inline;
+}
+
+li {
+    display: inline-block;
+    background-color: rgb(165, 77, 42);
+    padding: 10px;
+}
+
+.botao {
+    background-color: blue;
+    color: aliceblue;
+    border-radius: 5px;
+    text-decoration: none;
+
+    width: 30%;
+    height: 50px;
+
+    line-height: 50px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.vermelho {
+    background-color: red;
+    color: aliceblue;
+}
+
+.verde {
+    background-color: green;
+    color: aliceblue;
+}
+
+.azul {
+    background-color: blue;
+    color: aliceblue;
+}
+
+.todasDiv {
+    display: inline-block;
+    height: 60px;
+    width: 30%;
+}
+
+.verde:hover{
+    /* display: none; */
+    visibility: hidden;
+}
