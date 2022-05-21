@@ -1,4 +1,4 @@
-const numeroBinario = prompt("Digite seu número binário");
+const numeroBinario = prompt("Digite seu número binário"); '11010'
 let digitos = [];
 let numeroDecimal = 0;
 

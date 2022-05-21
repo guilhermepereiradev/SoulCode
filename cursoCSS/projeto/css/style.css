@@ -21,11 +21,11 @@ header{
     min-height: 150px;
     background-color: var(--corAzul);
     justify-content: center;
+    align-items: center;
 }
 
 .menu {
     display: inline-block;
-    line-height: 150px;
 }
 .linkMenu {
     color: var(--corBranca);
@@ -47,9 +47,6 @@ main {
     margin: auto;
 }
 
-.imagens {
-    width: 100%;
-}
 
 
 .titulos{
@@ -63,56 +60,44 @@ p {
     padding: 10px;
     text-align: justify;
 }
-.escudo {
-    width: 150px;
-    height: 150px;
-}
+
 .escudos{
     display: flex;
-    margin: 20px auto;
     justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.imagens {
+    width: 100%;
 }
 
 .camisas {
-    margin: auto;
-    padding: 30px 0px;
-    
+    display: flex;
 }
 
 .camisas li {
     display: inline-block;
-    text-align: center;
-    width: 30%;
-    vertical-align: top;
-    margin: 0px 1.5%;
-    box-sizing: border-box;
 }
-
 
 .textoLista{
     text-align: center;
-    line-height: normal;
-}
-.listaTrofeus{
-   list-style-type: none;
-   margin: 10px auto;
-   max-width: 80%;
 }
 
 .listaTrofeus li{
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .imagensTrofeus{
-    display: inline-block;
-    height: 300px;
-    float: left;
-    margin: 10px;
+    width: 300px;
+
 }
 
 .listaTrofeus p {
     display: inline;
-    line-height: 300px;    
 }
+
 .botao{
     margin: 20px auto;
 }
@@ -142,4 +127,25 @@ footer{
     color: var(--corBranca);
     font-weight: bold;
     font-size: 1.5em;
+}
+
+@media screen and (max-width: 480px){
+    header {
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-content: space-between;
+    }
+
+    .escudos{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .escudos img{
+        width: 50%;
+    }
 }

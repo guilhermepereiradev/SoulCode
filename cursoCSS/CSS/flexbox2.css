@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    border: 1px solid black;
+    width: 70%;
+    margin: auto;
+}
+/* precisamos tomar muito cuidado para não confundir o alinhamento do container com o alinhamento dos itens que estão dentro do container*/
