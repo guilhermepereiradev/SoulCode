@@ -1,0 +1,34 @@
+@media only screen and (max-width:600px){
+    body{
+        background: yellow;
+    }
+    h1{
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width:600px){
+    body{
+        background: rgb(212, 78, 11);
+    }
+}
+
+@media only screen and (min-width:768px){
+    body{
+        background: rgb(12, 47, 220);
+    }
+}
+
+@media only screen and (min-width:992px){
+    body{
+        background: rgb(26, 220, 12);
+    }
+}
+@media only screen and (min-width:1200px){
+    body{
+        background: rgb(221, 13, 200);
+    }
+    h1{
+        font-size: 35px;
+    }
+}

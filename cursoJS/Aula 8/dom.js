@@ -28,7 +28,7 @@ btn.addEventListener('click', () => {
     for (let i of valoresAPI) {
         const li = document.createElement('li');
         li.innerText = i;
-        ul.appendChild(li)
+        ul.appendChild(li);
     }
-    div.appendChild(ul)
-})
+    div.appendChild(ul);
+});

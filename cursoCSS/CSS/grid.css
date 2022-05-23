@@ -1,0 +1,34 @@
+header {
+    background-color: yellow;
+    grid-area: h;
+    text-align: center;
+    line-height: 20vh;
+}
+
+main {
+    background-color: blue;
+    grid-area: m;
+    text-align: center;
+    line-height: 70vh;
+}
+
+aside {
+    background-color: green;
+    grid-area: a;
+    text-align: center;
+    line-height: 70vh;
+}
+
+footer {
+    background-color: red;
+    grid-area: f;
+    text-align: center;
+    line-height: 10vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 20vh 70vh 10vh;
+    grid-template-areas: "h h" "m a" "f f";
+}

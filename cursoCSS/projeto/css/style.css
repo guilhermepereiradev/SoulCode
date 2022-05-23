@@ -24,7 +24,7 @@ header{
     align-items: center;
 }
 
-.menu {
+header nav ul li {
     display: inline-block;
 }
 .linkMenu {
@@ -47,8 +47,6 @@ main {
     margin: auto;
 }
 
-
-
 .titulos{
     text-align: center;
     clear: left;
@@ -66,11 +64,28 @@ p {
     justify-content: center;
     align-items: center;
     margin: 20px;
+    width: 80%;
+    margin: auto;
 }
 
 .imagens {
     width: 100%;
 }
+.fundoAzul{
+    background-color: var(--corAzul);
+    padding: 10px;
+    padding-bottom: 56.5%;
+    position: relative;
+}
+
+.fundoAzul > iframe{ 
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
 
 .camisas {
     display: flex;
@@ -94,10 +109,6 @@ p {
 
 }
 
-.listaTrofeus p {
-    display: inline;
-}
-
 .botao{
     margin: 20px auto;
 }
@@ -118,34 +129,39 @@ p {
 }
 
 footer{
-    display: flex;
+    background-color: var(--corAzul);
+    color: var(--corBranca);
     width: 100%;
     min-height: 150px;
-    background-color: var(--corAzul);
-    justify-content: center;
-    line-height: 150px;
-    color: var(--corBranca);
     font-weight: bold;
     font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media screen and (max-width: 480px){
-    header {
-    }
-
-    nav {
+@media screen and (max-width: 570px){
+    header nav ul {
         display: flex;
         justify-content: center;
-        align-content: space-between;
+        align-content: space-around;
+        flex-wrap: wrap;
     }
-
+    header nav ul li {
+        margin: 10px;
+    }
     .escudos{
-        display: flex;
-        align-items: center;
-        justify-content: center;
         flex-wrap: wrap;
     }
     .escudos img{
         width: 50%;
+    }
+
+    .camisas {
+        flex-direction: column;
+    }
+
+    .listaTrofeus li{
+        flex-direction: column;
     }
 }
