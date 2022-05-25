@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quadrado {
+    width: 500px;
+    height: 500px;
+    background-color: #2186c4;
+}
+
+.vermelho {
+    background-color: red;
+}
+
+/* .quadrado:hover{
+    animation-name: rotacionar;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+} */
+
+@keyframes rotacionar {
+    from {
+        transform: rotate(0);
+    } to {
+        transform: rotate(360deg);
+    }
+}

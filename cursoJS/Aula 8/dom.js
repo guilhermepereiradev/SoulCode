@@ -20,7 +20,7 @@
 // let p  = document.querySelectorAll('')
 
 let valoresAPI = ['Amanda', 'André', 'Andrew', 'Antonio', 'Aurelio', 'Manuela'];
-const div = document.getElementById('lista');
+const div = document.querySelector('#lista');
 const btn = document.querySelector('button');
 
 btn.addEventListener('click', () => {
