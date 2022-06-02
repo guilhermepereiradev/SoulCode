@@ -4,7 +4,7 @@ var idade = 18;
 const ESTUDANDO = true;
 const nomes = ['Rafael', 'Brock', 'Oliveira', 'Zé Ivaldo'];
 const numeros = [1, 14, 18, 27];
-const boleanos = [true, false, false, true];
+const boleanos = [true, false, false, true, 50];
 const bidemensional = [['Alou', 'Testando'], ['Falando', 'Teste']];
 const idades = [19, 25, 34, 27];
 nomes.forEach((nome, i) => console.log(`${nome}, ${idades[i]} anos`));
@@ -28,3 +28,10 @@ const p4 = {
     nome: 'Canesin',
     cpf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1]
 };
+const p5 = {
+    idade: 32,
+    nome: 'Canesin',
+    cpf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1]
+};
+let x = 5; // pode receber qualquer valor mas é bom evitar
+x = 'dasdasd';

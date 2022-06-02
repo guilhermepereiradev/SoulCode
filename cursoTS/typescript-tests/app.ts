@@ -4,7 +4,7 @@ const ESTUDANDO: boolean = true;
 
 const nomes: Array<string> = ['Rafael', 'Brock', 'Oliveira', 'Zé Ivaldo'];
 const numeros: Array<number> = [1, 14, 18, 27];
-const boleanos: Array<boolean> = [true, false, false, true];
+const boleanos: Array<boolean | number> = [true, false, false, true, 50];
 const bidemensional: Array<Array<string>> = [['Alou', 'Testando'], ['Falando', 'Teste']];
 
 const idades: number[] = [19, 25, 34, 27];
@@ -40,3 +40,14 @@ const p4: Pessoa = {
     nome: 'Canesin',
     cpf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1]
 }
+
+const p5: Pessoa = {
+    idade: 32,
+    nome: 'Canesin',
+    cpf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1]
+}
+
+let x: any = 5; // pode receber qualquer valor mas é bom evitar
+
+x = 'dasdasd';
+
