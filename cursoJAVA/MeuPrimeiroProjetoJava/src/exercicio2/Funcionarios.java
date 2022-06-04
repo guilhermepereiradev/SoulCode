@@ -60,10 +60,14 @@ public class Funcionarios {
     public void trocarCargoFuncionario(){
         if(this.cargo == "DEV Junior"){
             this.cargo = "DEV Pleno";
+            System.out.println(getNome()+" foi promovido e agora é "+getCargo());
         } else if(this.cargo == "DEV Pleno"){
             this.cargo = "DEV Senior";
+            System.out.println(getNome()+" foi promovido e agora é "+getCargo());
         } else if(this.cargo == "DEV Senior"){
             this.cargo = "Tech Lead";
+            System.out.println(getNome()+" foi promovido e agora é "+getCargo());
+
         } else {
             System.out.println("Operação inválida.");
         }
@@ -71,9 +75,14 @@ public class Funcionarios {
 
     public void aniversariar(){
         this.idade += 1;
+        System.out.println(getNome()+" fez aniversário a agora tem "+getIdade()+" anos");
     }
 
     public void pagarSalario(){
         System.out.println("O salario do funcionário "+getNome()+" foi pago.");
+    }
+
+    public Object criarFuncionario(String nome, int idade, String cargo, String situacao){
+        return new Funcionarios(nome, idade, cargo, situacao);
     }
 }
