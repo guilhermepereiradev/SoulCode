@@ -1,4 +1,4 @@
-public class Conta {
+public abstract class Conta { //abstract proibi instanciar um objeto do tipo conta
 
     private String titularConta;
     private String numeroConta;
