@@ -5,4 +5,11 @@ public class ContaPoupanca extends Conta{
     public ContaPoupanca(String titularConta, String numeroConta, String numeroAgencia, double saldo) {
         super(titularConta, numeroConta, numeroAgencia, saldo);
     }
+
+    public void sacar(){
+
+    }
+    public double getRendimento() {
+        return rendimento;
+    }
 }

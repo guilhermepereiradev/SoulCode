@@ -11,26 +11,26 @@ public class principal {
         f1.demitirFuncionario();
         System.out.println(f1.getSituacao());
 
-        System.out.println("");
-        System.out.println("####################");
-        System.out.println("");
+        espaco();
 
         System.out.println(f2.getCargo());
         f2.trocarCargoFuncionario();
         System.out.println(f2.getCargo());
 
-        System.out.println("");
-        System.out.println("####################");
-        System.out.println("");
+        espaco();
 
         System.out.println(f3.getIdade());
         f3.aniversariar();
         System.out.println(f3.getIdade());
 
+        espaco();
+
+        f4.pagarSalario();
+    }
+
+    public static void espaco(){
         System.out.println("");
         System.out.println("####################");
         System.out.println("");
-
-        f4.pagarSalario();
     }
 }

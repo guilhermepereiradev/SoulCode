@@ -16,22 +16,4 @@ public class ContaCorrente extends Conta{ //importa a superclass conta
         return atendimento;
     }
 
-    public void depositar(double valor){
-        if (valor > 0){
-            setSaldo(getSaldo()+valor);
-            System.out.printf("%s%s%.2f%n", getTitularConta(), ", deposito efetuado com sucesso. Seu novo saldo é ",getSaldo());
-        }else {
-            System.out.printf("%s%s%n",getTitularConta(),", operação inválida.");
-        }
-    }
-
-    public void sacar(double valor){
-        if(getSaldo() < valor){
-            System.out.printf("%s%s%n",getTitularConta(),", saldo insuficiente para a operação.");
-        }else{
-            setSaldo(getSaldo()-valor);
-            System.out.printf("%s%s%.2f%n",getTitularConta(),", saque efetuado com sucesso. Seu novo saldo é ",getSaldo());
-        }
-    }
-
 }
