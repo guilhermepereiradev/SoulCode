@@ -1,5 +1,9 @@
 <div class="cartao" [style]="gerarCssDoCartao()">
     <h4>{{tituloCartao}}</h4>
-    <p>{{textoCartao}}</p>
+    
     <img [src]="imagem" alt="Imagem aleatoria">
+    
+    <p>{{textoCartao}}</p>
+
+    <button (click)="emitirDelecaoDoCartao()">&times;</button>
 </div>

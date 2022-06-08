@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'cartao', //criar uma tag chamada cartao <cartao></cartao>
@@ -19,6 +19,9 @@ export class CartaoComponent implements OnInit {
   @Input()
   imagem: string = '';
 
+  @Output()
+  deletarCartao: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -28,5 +31,10 @@ export class CartaoComponent implements OnInit {
     return `border-color: ${this.corDaBorda}`;
   }
 
+  emitirDelecaoDoCartao(): void{
+    this.deletarCartao.emit({
+      excluir: true,
+    })
+  }
 
 }
