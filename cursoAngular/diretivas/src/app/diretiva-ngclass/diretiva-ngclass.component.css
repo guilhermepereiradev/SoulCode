@@ -1,0 +1,14 @@
+.sucesso{
+    background-color: blue;
+    color: white;
+}
+
+.aviso{
+    background-color: yellow;
+    color: black;
+}
+
+.perigo {
+    background-color: red;
+    color: white;
+}
