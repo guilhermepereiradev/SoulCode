@@ -1,0 +1,18 @@
+<body>
+  <div class="cabecalho">
+    <h1>to-do-list</h1>
+  </div>
+  <div class="form">
+    <input type="text" name="" id="" #inputValor>
+    <button (click)="adicionar(inputValor.value)">Adicionar</button>
+  </div>
+  <div class="lista">
+    <ul *ngFor="let item of itens">
+      <li>
+        <p>{{item}}</p> 
+        <span (click)="remover(this.item)">&times;</span></li>
+    </ul>
+    <ul>
+    </ul>
+  </div>
+</body>
