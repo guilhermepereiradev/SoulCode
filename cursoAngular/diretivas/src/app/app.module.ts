@@ -7,6 +7,7 @@ import { DiretivaNgifComponent } from './diretiva-ngif/diretiva-ngif.component';
 import { DiretivaNgforComponent } from './diretiva-ngfor/diretiva-ngfor.component';
 import { DiretivasNgswitchComponent } from './diretivas-ngswitch/diretivas-ngswitch.component';
 import { CartaoComponent } from './cartao/cartao.component';
+import { BtnDirective } from './btn.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CartaoComponent } from './cartao/cartao.component';
     DiretivaNgifComponent,
     DiretivaNgforComponent,
     DiretivasNgswitchComponent,
-    CartaoComponent
+    CartaoComponent,
+    BtnDirective
   ],
   imports: [
     BrowserModule
