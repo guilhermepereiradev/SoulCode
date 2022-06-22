@@ -1,0 +1,13 @@
+.dialog-form{
+    width: 450px;
+}
+
+.dialog-form form{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    width: 100%;
+    margin: 10px 0;
+}

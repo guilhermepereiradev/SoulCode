@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Novo Produto</h2>
+<section mat-dialog-content class="dialog-form">
+    <form action="" [formGroup]="formProduto">
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>Nome</mat-label>
+            <input type="text" matInput name="campo-nome" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>Preço</mat-label>
+            <input type="number" matInput name="campo-preco" formControlName="price">
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>Foto</mat-label>
+            <input type="text" matInput name="campo-foto" formControlName="picture">
+        </mat-form-field>
+    </form>
+</section>
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="formProduto.value">Adicionar</button>
+  <button mat-raised-button color="warn" type="button" mat-dialog-close="">Cancelar</button>
+</mat-dialog-actions>

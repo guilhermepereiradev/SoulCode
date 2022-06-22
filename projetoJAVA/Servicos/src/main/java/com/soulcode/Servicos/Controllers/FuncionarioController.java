@@ -2,6 +2,7 @@ package com.soulcode.Servicos.Controllers;
 
 import com.soulcode.Servicos.Models.Funcionario;
 import com.soulcode.Servicos.Services.FuncionarioService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,19 @@ public class FuncionarioController {
         funcionario = funcionarioService.cadatrarFuncionario(funcionario);
         URI novaUri = ServletUriComponentsBuilder.fromCurrentRequest().path("id").buildAndExpand(funcionario.getIdFuncionario()).toUri();
         return ResponseEntity.created(novaUri).body(funcionario);
+    }
+
+    @DeleteMapping("/funcionarios/{idFuncionario}")
+    public ResponseEntity<Void> excluirFuncionario(@PathVariable Integer idFuncionario){
+        funcionarioService.excluirFuncionario(idFuncionario);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/funcionarios/{idFuncionario}")
+    public ResponseEntity<Funcionario> editarFuncionario(@PathVariable Integer idFuncionario, @RequestBody Funcionario funcionario){
+        funcionario.setIdFuncionario(idFuncionario);
+        funcionarioService.editarFuncionario(funcionario);
+        return ResponseEntity.ok().build();
     }
 
 }

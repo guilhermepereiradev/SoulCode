@@ -1,0 +1,39 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+mat-drawer{
+    width: 15%;
+}
+
+mat-toolbar{
+    height: 100%;
+}
+
+mat-toolbar-row h1{
+    text-align: center;
+    width: 100%;
+}
+
+button {
+    position: fixed;
+    bottom: 5%;
+    right: 4%;
+}
+
+mat-drawer-content{
+    display: flex; 
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+app-product-card{
+    width: 25%;
+    margin: 30px;
+}
+
+strong {
+    margin: 20px;
+}
