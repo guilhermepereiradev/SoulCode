@@ -1,6 +1,10 @@
 package com.soulcode.Servicos.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Funcionario {
@@ -17,6 +21,10 @@ public class Funcionario {
 
     @Column(nullable = true)
     private String foto;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "funcionario")
+    private List<Chamado> chamados = new ArrayList<>();
 
     public Integer getIdFuncionario() {
         return idFuncionario;
@@ -48,5 +56,13 @@ public class Funcionario {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public List<Chamado> getChamados() {
+        return chamados;
+    }
+
+    public void setChamados(List<Chamado> chamados) {
+        this.chamados = chamados;
     }
 }
