@@ -12,16 +12,11 @@ export class ListarFuncionariosComponent implements OnInit {
 
   funcionarios: Funcionario[] = []
 
-  colunas: Array<string> = ['id', 'email', 'nome', 'actions']
+  colunas: Array<string> = ['id', 'nome', 'email', 'actions']
   
   constructor(
     private funcService: FuncionarioService
   ) { }
-  
-  excluirFuncionario(id: number): void{
-    this.funcService.deleteFuncionario(id).subscribe();
-  }
-
 
   ngOnInit(): void {
 
@@ -29,6 +24,28 @@ export class ListarFuncionariosComponent implements OnInit {
     // 2º erro -> ocorre um erro na fonte de dados
     // 3º complete -> a fonte de dados te retorna tudo
 
+    this.recuperarFuncionarios();
+  }
+
+  excluirFuncionario(id: number, name: string): void{
+    const deletar = confirm(`Você realmente deseja excluir o funcionário ${name}?`);
+    
+    if (deletar){
+      this.funcService.deleteFuncionario(id).subscribe(
+          () => {
+            alert(`O funcionário ${name} foi deletado.`);
+            this.recuperarFuncionarios();
+          },
+        (error) => {
+          alert("Não foi possivél deltar esse funcionário.")
+          console.log(error);
+        }
+      )
+    }
+
+  }
+
+  recuperarFuncionarios(): void{
     this.funcService.getFuncionarios().subscribe(
       (funcs) => { //sucesso
           this.funcionarios = funcs;
@@ -41,5 +58,4 @@ export class ListarFuncionariosComponent implements OnInit {
       }
     )
   }
-  
 }

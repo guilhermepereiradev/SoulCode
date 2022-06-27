@@ -19,7 +19,12 @@ export class FuncionarioService {
     return this.http.get<Funcionario[]>(this.baseUrl)
   }
 
+  //http://localhost:3000/funcionarios/id
   deleteFuncionario(id: number): Observable<any>{
     return this.http.delete<any>(`${this.baseUrl}/${id}`);
+  }
+
+  getFuncionarioById(id: number): Observable<Funcionario>{
+    return this.http.get<Funcionario>(`${this.baseUrl}/${id}`);
   }
 }

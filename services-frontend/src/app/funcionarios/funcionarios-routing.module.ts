@@ -1,13 +1,19 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { ListarFuncionariosComponent } from './pages/listar-funcionarios/listar-funcionarios.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: ListarFuncionariosComponent
+    component: ListarFuncionariosComponent,
+    children: [
+      {
+        path: ':idFuncionario',
+        component: FuncionarioComponent
+      }
+    ]
   }
 ]
 
