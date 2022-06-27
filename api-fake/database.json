@@ -1,0 +1,106 @@
+{
+  "funcionarios": [
+    {
+      "id": 1,
+      "nome": "Steve Rogers",
+      "email": "cap@email.com",
+      "foto": "url"
+    },
+    {
+      "nome": "Tony Stark",
+      "email": "ironman@email.com",
+      "foto": "",
+      "id": 2
+    },
+    {
+      "nome": "Bruce Banner",
+      "email": "mrgreen@email.com",
+      "foto": "",
+      "id": 3
+    },
+    {
+      "nome": "Matt Murdock",
+      "email": "daredevil@email.com",
+      "foto": "",
+      "id": 4
+    },
+    {
+      "nome": "Frank Castle",
+      "email": "thepunisher@email.com",
+      "foto": "",
+      "id": 5
+    },
+    {
+      "nome": "Natasha Romanoff",
+      "email": "blackwidow@email.com",
+      "foto": "",
+      "id": 6
+    },
+    {
+      "nome": "Edu",
+      "email": "imperadorazul@email.com",
+      "foto": "",
+      "id": 7
+    },
+    {
+      "nome": "Rafael Cabral",
+      "email": "paredao@email.com",
+      "foto": "",
+      "id": 8
+    },
+    {
+      "nome": "Eduardo Brock",
+      "email": "brockencauer@email.com",
+      "foto": "",
+      "id": 9
+    },
+    {
+      "nome": "Ze Ivaldo",
+      "email": "zeivaldo@email.com",
+      "foto": "",
+      "id": 10
+    },
+    {
+      "nome": "Lucas Oliveira",
+      "email": "eugostum@email.com",
+      "foto": "",
+      "id": 11
+    },
+    {
+      "nome": "William Oliveira",
+      "email": "pastor@email.com",
+      "foto": "",
+      "id": 12
+    },
+    {
+      "nome": "Neto Moura",
+      "email": "jogadeterno@email.com",
+      "foto": "",
+      "id": 13
+    },
+    {
+      "nome": "Matheus Bidu",
+      "email": "auau@email.com",
+      "foto": "",
+      "id": 14
+    },
+    {
+      "nome": "Leo Pais",
+      "email": "hablaspejo@email.com",
+      "foto": "",
+      "id": 15
+    },
+    {
+      "nome": "Jaja",
+      "email": "Jajá@email.com",
+      "foto": "",
+      "id": 17
+    },
+    {
+      "nome": "Rafa Silva",
+      "email": "sargento@email.com",
+      "foto": "",
+      "id": 18
+    }
+  ]
+}

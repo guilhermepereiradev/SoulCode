@@ -51,4 +51,10 @@ public class FuncionarioService {
     public Funcionario editarFuncionario(Funcionario funcionario){
         return funcionarioRepository.save(funcionario);
     }
+
+    public Funcionario salvarFoto(Integer idFuncionario, String caminhoFoto){
+        Funcionario funcionario = mostrarUmFuncionarioPeloId(idFuncionario);
+        funcionario.setFoto(caminhoFoto);
+        return funcionarioRepository.save(funcionario);
+    }
 }

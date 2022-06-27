@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-public class UploadFila {
+public class UploadFile {
 
     public static  void saveFile(String uploadDir, String fileName, MultipartFile file) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
