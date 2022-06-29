@@ -3,9 +3,13 @@ package com.soulcode.Servicos.Controllers;
 import com.soulcode.Servicos.Models.Chamado;
 import com.soulcode.Servicos.Services.ChamadoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.swing.*;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -26,5 +30,29 @@ public class ChamadoController {
     public ResponseEntity<Chamado> mostrarChamadoPeloId(@PathVariable Integer idChamado){
         Chamado chamado = chamadoService.mostrarChamadoPeloId(idChamado);
         return ResponseEntity.ok().body(chamado);
+    }
+
+    @GetMapping("/chamadosPeloCliente/{idCliente}")
+    public List<Chamado> buscarChamadosPeloCliente(@PathVariable Integer idCliente){
+        List<Chamado> chamados = chamadoService.buscarChamadosPeloCliente(idCliente);
+        return chamados;
+    }
+
+    @GetMapping("/chamadosPeloFuncionario/{idFuncionario}")
+    public List<Chamado> buscarChamadoPeloFuncionario(@PathVariable Integer idFuncionario){
+        List<Chamado> chamados = chamadoService.buscarChamadoPeloFuncionario(idFuncionario);
+        return chamados;
+    }
+
+    @GetMapping("/chamadosPeloStatus")
+    public List<Chamado> buscarChamadoPeloStatus(@RequestParam("status") String status){
+        List<Chamado> chamados = chamadoService.buscarChamadoPeloStatus(status);
+        return chamados;
+    }
+
+    @GetMapping("/chamadosPorIntervaloData")
+    public List<Chamado> buscarCbuscarChamadoPorIntervaloData(@RequestParam("data1") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date data1, @RequestParam("data2") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date data2){
+        List<Chamado> chamados = chamadoService.buscarChamadoPorIntervaloData(data1, data2);
+        return chamados;
     }
 }

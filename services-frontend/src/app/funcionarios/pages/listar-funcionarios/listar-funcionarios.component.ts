@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FormFuncionarioComponent } from '../../components/form-funcionario/form-funcionario.component';
 import { FuncionariosModule } from '../../funcionarios.module';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
@@ -15,7 +17,8 @@ export class ListarFuncionariosComponent implements OnInit {
   colunas: Array<string> = ['id', 'nome', 'email', 'actions']
   
   constructor(
-    private funcService: FuncionarioService
+    private funcService: FuncionarioService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -57,5 +60,10 @@ export class ListarFuncionariosComponent implements OnInit {
         console.log("Dados enviados com sucesso");
       }
     )
+
+  }
+
+  abrirFormFuncionario(): void {
+    this.dialog.open(FormFuncionarioComponent)
   }
 }

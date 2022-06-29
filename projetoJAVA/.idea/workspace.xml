@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e97a0428-68ab-4cc6-a3f5-00b7d76bba51" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../cursoAngular/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/projetoJAVA.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/src/main/java/com/soulcode/Servicos/ServicosApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Servicos/src/test/java/com/soulcode/Servicos/ServicosApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-fake/database.json" beforeDir="false" afterPath="$PROJECT_DIR$/../api-fake/database.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/funcionarios.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/funcionarios.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/funcionario/funcionario.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/funcionario/funcionario.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/funcionario/funcionario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/funcionario/funcionario.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/listar-funcionarios/listar-funcionarios.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/listar-funcionarios/listar-funcionarios.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/listar-funcionarios/listar-funcionarios.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/listar-funcionarios/listar-funcionarios.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/listar-funcionarios/listar-funcionarios.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/pages/listar-funcionarios/listar-funcionarios.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/services/funcionario.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/app/funcionarios/services/funcionario.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services-frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services-frontend/src/environments/environment.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/guilherme/Documents/cursoJAVA/Servicos"
+    "last_opened_file_path": "/home/guilherme/Documents/SoulCode/projetoJAVA/Servicos"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -55,6 +52,7 @@
       <workItem from="1655504340882" duration="106000" />
       <workItem from="1655504455000" duration="147000" />
       <workItem from="1655504955922" duration="108000" />
+      <workItem from="1656437430798" duration="23000" />
     </task>
     <servers />
   </component>
