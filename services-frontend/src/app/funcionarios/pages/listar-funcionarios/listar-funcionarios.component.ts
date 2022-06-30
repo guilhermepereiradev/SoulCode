@@ -36,7 +36,6 @@ export class ListarFuncionariosComponent implements OnInit {
     if (deletar){
       this.funcService.deleteFuncionario(id).subscribe(
           () => {
-            alert(`O funcionário ${name} foi deletado.`);
             this.recuperarFuncionarios();
           },
         (error) => {
@@ -51,7 +50,7 @@ export class ListarFuncionariosComponent implements OnInit {
   recuperarFuncionarios(): void{
     this.funcService.getFuncionarios().subscribe(
       (funcs) => { //sucesso
-          this.funcionarios = funcs;
+          this.funcionarios = funcs.reverse();
       }, 
       (erro) => { // erro
         console.log(erro);
@@ -64,6 +63,10 @@ export class ListarFuncionariosComponent implements OnInit {
   }
 
   abrirFormFuncionario(): void {
-    this.dialog.open(FormFuncionarioComponent)
+    // abrindo o form funcionario e recuperando a referencia desse dialog e guardando na variável
+    const referenciaDialog = this.dialog.open(FormFuncionarioComponent);
+    referenciaDialog.afterClosed().subscribe(
+      () => this.recuperarFuncionarios()
+    )
   }
 }

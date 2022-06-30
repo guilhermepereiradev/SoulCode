@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { lastValueFrom } from 'rxjs';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
 
@@ -20,7 +22,8 @@ export class FormFuncionarioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private funcService: FuncionarioService
+    private funcService: FuncionarioService,
+    private dialogRef: MatDialogRef<FormFuncionarioComponent>
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +47,17 @@ export class FormFuncionarioComponent implements OnInit {
     const f: Funcionario = this.formFuncionario.value;
     f.foto = '';
 
-    this.funcService.salvarFuncionario(f).subscribe( (func) => console.log(func))
+    this.funcService.salvarFuncionario(f).subscribe( 
+      async func => {
+        //apos salvar os dados basicos, vamos salvar a imagem e gerar o link
+        const link = await this.funcService.uploadImagem(this.foto);
+        func.foto = link;
+        this.funcService.autualizarFuncionario(func).subscribe(
+          (fun) => {
+            this.dialogRef.close();
+          }
+        )
+      }
+    )
   }
 }

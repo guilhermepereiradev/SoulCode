@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>Novo Funcionário</h2>
 <section mat-dialog-content>
     <form action="" [formGroup]="formFuncionario" (ngSubmit)="salvar()">
-        <img [src]="fotoPreview" *ngIf="fotoPreview" alt="Foto de perfil">
+        <div class="fotoPre" *ngIf="fotoPreview">
+            <img [src]="fotoPreview" alt="Foto de perfil">
+        </div>
         <mat-form-field appearance="fill">
             <mat-label>Nome</mat-label>
             <input type="text" placeholder="Ex: John Doe" matInput formControlName="nome">

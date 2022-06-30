@@ -12,8 +12,12 @@ form{
     margin-top: 16px;
 }
 
-img{
-    border-radius: 50%;
-    max-width: 80%;
+.fotoPre{
     margin: 16px auto;
+}
+img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
 }
