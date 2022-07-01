@@ -13,7 +13,8 @@ form{
 }
 
 .fotoPre{
-    margin: 16px auto;
+    margin: auto;
+    margin-bottom: 16px;
 }
 img{
     width: 300px;

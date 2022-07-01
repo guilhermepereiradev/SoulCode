@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmarExclusaoComponent } from '../../components/confirmar-exclusao/confirmar-exclusao.component';
 import { FormFuncionarioComponent } from '../../components/form-funcionario/form-funcionario.component';
 import { FuncionariosModule } from '../../funcionarios.module';
 import { Funcionario } from '../../models/funcionario';
@@ -18,7 +20,8 @@ export class ListarFuncionariosComponent implements OnInit {
   
   constructor(
     private funcService: FuncionarioService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -30,22 +33,29 @@ export class ListarFuncionariosComponent implements OnInit {
     this.recuperarFuncionarios();
   }
 
-  excluirFuncionario(id: number, name: string): void{
-    const deletar = confirm(`Você realmente deseja excluir o funcionário ${name}?`);
+
+  teste(){
     
-    if (deletar){
-      this.funcService.deleteFuncionario(id).subscribe(
-          () => {
-            this.recuperarFuncionarios();
-          },
-        (error) => {
-          alert("Não foi possivél deltar esse funcionário.")
-          console.log(error);
-        }
-      )
+  }
+  excluirFuncionario(id: number): void{
+    const referenciaDialogConfirm = this.dialog.open(ConfirmarExclusaoComponent);
+    let snackBarRef = this.snackBar;
+      referenciaDialogConfirm.afterClosed().subscribe(
+        result =>{
+          if(result){
+          this.funcService.deleteFuncionario(id).subscribe(
+            () => {
+              this.recuperarFuncionarios();
+            })
+            snackBarRef.open("Funcionário deletetado com sucesso!", "", {
+              duration: 3000,
+            })
+          }
+            
+    })
     }
 
-  }
+  
 
   recuperarFuncionarios(): void{
     this.funcService.getFuncionarios().subscribe(
@@ -56,7 +66,7 @@ export class ListarFuncionariosComponent implements OnInit {
         console.log(erro);
       }, 
       () => {// complete
-        console.log("Dados enviados com sucesso");
+        // console.log("Dados enviados com sucesso");
       }
     )
 

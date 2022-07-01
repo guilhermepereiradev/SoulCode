@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
 //localhost:3000/funcionarios
@@ -30,19 +30,34 @@ export class FuncionarioService {
     return this.http.get<Funcionario>(`${this.baseUrl}/${id}`);
   }
 
-  salvarFuncionario(func: Funcionario): Observable<Funcionario>{
-    return this.http.post<Funcionario>(this.baseUrl, func)
+
+  // RXJS Operators: funçoes que manipulam os dados que os observables te retornam
+  salvarFuncionario(func: Funcionario, foto: File | undefined): Observable<Promise<Observable<Funcionario>>>{
+    // fazen requisição POST para salavar os dados do funcionario
+    // @return o funcionario que acabou de ser salvo
+    // pipe é utilizado para os operadores RXJS, map modifica cada dado retornado pelo obsevable
+
+    return this.http.post<Funcionario>(this.baseUrl, func).pipe(map(async (func) => {
+      // 1º fazer o upload da imagem e recuperar o link gerado
+        if(foto != undefined){  
+        const linkFotoFirabase = await this.uploadImagem(foto);
+
+          func.foto = linkFotoFirabase;     
+        }
+          return this.atualizarFuncionario(func);
+        }
+      ) 
+    )
   }
 
-  autualizarFuncionario(func: Funcionario): Observable<Funcionario>{
+  atualizarFuncionario(func: Funcionario): Observable<Funcionario>{
     return this.http.put<Funcionario>(`${this.baseUrl}/${func.id}`, func)
-
   }
   
   // 1º Pegar a imagem
   // 2º Fazer o upload da imagem
   // 3º Gerar o link de download e retorna-lo
-  async uploadImagem(foto: File): Promise<string> {
+  private async uploadImagem(foto: File): Promise<string> {
     // a palavra chave async informa que a função vai trabalhar com codigo assincrono, ou seja, codigos que demoram para serem executados
 
     const nomeDoArquivo = Date.now(); // retorna a data em milissegundos
