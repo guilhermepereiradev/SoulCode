@@ -24,7 +24,7 @@
                     <input type="text" matInput formControlName="email">
                 </mat-form-field>
 
-                <input type="file" name="" id="file-input" #fileInput>
+                <input type="file" name="" id="file-input" #fileInput (change)="recuperarFoto($event)">
                 <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">Selecione uma imagem</button>
                 <button type="submit" mat-raised-button color="primary" id="submit" (click)="editarFunc()">Editar Funcionário</button>
             </form>

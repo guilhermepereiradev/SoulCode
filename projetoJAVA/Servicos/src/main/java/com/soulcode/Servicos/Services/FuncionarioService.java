@@ -1,11 +1,12 @@
 package com.soulcode.Servicos.Services;
 
+import com.soulcode.Servicos.Models.Cargo;
 import com.soulcode.Servicos.Models.Funcionario;
+import com.soulcode.Servicos.Repositories.CargoRepository;
 import com.soulcode.Servicos.Repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,9 @@ public class FuncionarioService {
     //aqui se faz a injeção de dependencia
     @Autowired
     FuncionarioRepository funcionarioRepository;
+
+    @Autowired
+    CargoRepository cargoRepository;
 
     // primeiro serviço na tabela de funcionarios vai ser a leitura de todos os funcionarios cadastrados
     //findAll -> metodo do spring Data JPA -> busca todos os registros de uma tabela
@@ -38,9 +42,11 @@ public class FuncionarioService {
     }
 
 //  Vamos criar um serviço para cadastrar um novo funcionario
-    public Funcionario cadatrarFuncionario(Funcionario funcionario){
+    public Funcionario cadastrarFuncionario(Funcionario funcionario, Integer idCargo){
 //  So por preocação nos vamos colocar o id do funcinario como null
         funcionario.setIdFuncionario(null);
+        Optional<Cargo> cargo = cargoRepository.findById(idCargo);
+        funcionario.setCargo(cargo.get());
         return funcionarioRepository.save(funcionario);
     }
 
@@ -56,5 +62,11 @@ public class FuncionarioService {
         Funcionario funcionario = mostrarUmFuncionarioPeloId(idFuncionario);
         funcionario.setFoto(caminhoFoto);
         return funcionarioRepository.save(funcionario);
+    }
+
+    public List<Funcionario> mostrarFuncionariosPeloCargo(Integer idCargo){
+        Optional<Cargo> cargo = cargoRepository.findById(idCargo);
+        List<Funcionario> funcionarios = funcionarioRepository.findByCargo(cargo);
+        return funcionarios;
     }
 }

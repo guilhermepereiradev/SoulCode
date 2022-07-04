@@ -57,7 +57,7 @@ export class FuncionarioService {
   // 1º Pegar a imagem
   // 2º Fazer o upload da imagem
   // 3º Gerar o link de download e retorna-lo
-  private async uploadImagem(foto: File): Promise<string> {
+  public async uploadImagem(foto: File): Promise<string> {
     // a palavra chave async informa que a função vai trabalhar com codigo assincrono, ou seja, codigos que demoram para serem executados
 
     const nomeDoArquivo = Date.now(); // retorna a data em milissegundos

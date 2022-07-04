@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Funcionario {
@@ -25,6 +26,10 @@ public class Funcionario {
     @JsonIgnore
     @OneToMany(mappedBy = "funcionario")
     private List<Chamado> chamados = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "idCargo")
+    private Cargo cargo;
 
     public Integer getIdFuncionario() {
         return idFuncionario;
@@ -64,5 +69,13 @@ public class Funcionario {
 
     public void setChamados(List<Chamado> chamados) {
         this.chamados = chamados;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 }

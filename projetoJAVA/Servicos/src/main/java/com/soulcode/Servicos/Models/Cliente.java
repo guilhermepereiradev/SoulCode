@@ -22,6 +22,12 @@ public class Cliente {
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Chamado> chamados = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "idEndereco")
+    private Endereco endereco;
+
+
     public Integer getIdCliente() {
         return idCliente;
     }
@@ -52,5 +58,13 @@ public class Cliente {
 
     public void setChamados(List<Chamado> chamados) {
         this.chamados = chamados;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
