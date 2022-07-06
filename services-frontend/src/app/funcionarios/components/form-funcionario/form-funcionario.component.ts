@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
 import { SalvandoFuncionarioComponent } from '../salvando-funcionario/salvando-funcionario.component';
@@ -16,10 +16,11 @@ export class FormFuncionarioComponent implements OnInit {
 
   formFuncionario: FormGroup = this.fb.group({
     nome: ['',[Validators.required]],
-    email: ['',[Validators.required, Validators.email]]
+    email: ['',[Validators.required, Validators.email]],
+    foto: ['']
   })
 
-  fotoPerfilPadrao: string = "../../../../assets/blank-profile-picture-973460_1280.webp";
+  fotoPerfilPadrao: string = "../../../../assets/no-profile.webp";
 
   foto!: File;
   fotoPreview: string = '';
@@ -28,7 +29,7 @@ export class FormFuncionarioComponent implements OnInit {
     private fb: FormBuilder,
     private funcService: FuncionarioService,
     private dialogRef: MatDialogRef<FormFuncionarioComponent>,
-    private dialogRefSalvando: MatDialog,
+    private dialogSalvando: MatDialog,
     private snackBar: MatSnackBar
   ) { }
 
@@ -51,35 +52,36 @@ export class FormFuncionarioComponent implements OnInit {
 
   salvar(): void {
     const f: Funcionario = this.formFuncionario.value
+    let obsSalvar: Observable<any>
     const snackBarRef = this.snackBar;
+    const matDialogSalvando = this.dialogSalvando;
+    matDialogSalvando.open(SalvandoFuncionarioComponent)
 
-    // iniciando salvamento do funcionário
-    this.funcService.salvarFuncionario(f, this.foto)
-    .subscribe((dados) => {
-      const matDialogSalvando = this.dialogRefSalvando;
-      matDialogSalvando.open(SalvandoFuncionarioComponent);
-      // 1° -> Recuperar o observable que me é retornado do primeiro subscribe
-
-      /**
-       * a função then() é executada
-       * quando a promise consegue te retornar os dados com sucesso
-       *
-       * nesse caso, o dado que será retorna é um observable com o funcionário
-       * que foi salvo no banco de dados
-       */
-      dados.then((obs$) => {
-        // inscrevendo-se no observable que nos retornará o funcionário salvo no banco de dados
-        obs$.subscribe(
-          (func) => {
-            // quando o funcionário for salvo, aparecerá um alert na tela e o dialog será fechado
-            matDialogSalvando.closeAll();
-            snackBarRef.open("Funcionário salvo com Sucesso!", "",{
-              duration: 3000
-            })
-            this.dialogRef.close()
-          }
-        )
-      })
-    })
+    if(this.formFuncionario.value.foto.length > 0){
+      obsSalvar = this.funcService.salvarFuncionario(f, this.foto)
+    } else {
+      obsSalvar = this.funcService.salvarFuncionario(f)
+    }
+    
+    obsSalvar.subscribe(
+      resultado => {
+        if(resultado instanceof Promise){
+          resultado.then(obs$ => {
+            obs$.subscribe( () =>{
+              matDialogSalvando.closeAll()
+              snackBarRef.open("Funcionário salvo com Sucesso!", "",{duration: 3000})
+              this.dialogRef.close()
+          })
+          })
+        }else {
+          // se cair no else o func ja foi salvo e não tinha foto pra enviar
+          matDialogSalvando.closeAll();
+          snackBarRef.open("Funcionário salvo com Sucesso!", "",{
+            duration: 3000
+          })
+          this.dialogRef.close()
+        }
+      } 
+    )
   }
 }

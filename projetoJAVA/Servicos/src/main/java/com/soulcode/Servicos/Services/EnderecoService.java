@@ -54,7 +54,10 @@ public class EnderecoService {
 
     public void excluirEnderecoPeloCliente(Integer idCliente){
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
-        enderecoRepository.deleteById(cliente.get().getEndereco().getIdEndereco());
+        int IdEndereco = cliente.get().getEndereco().getIdEndereco();
+        cliente.get().getEndereco().setCliente(null);
+        cliente.get().setEndereco(null);
+        enderecoRepository.deleteById(IdEndereco);
     }
 
     public void excluirEndereco(Integer idEndereco){

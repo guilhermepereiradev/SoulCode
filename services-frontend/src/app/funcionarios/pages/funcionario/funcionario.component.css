@@ -36,3 +36,9 @@ form{
     height: 300px;
     border-radius: 50%;
 }
+
+.fotoPre > button{
+    position: absolute;
+    right: 120px;
+    top: 330px;    
+}

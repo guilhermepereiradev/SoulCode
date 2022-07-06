@@ -1,4 +1,5 @@
 import { normalizePassiveListenerOptions } from '@angular/cdk/platform';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ReadKeyExpr, ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,16 +21,20 @@ export class FuncionarioComponent implements OnInit {
 
   funcionario!: Funcionario;
 
-  fotoPadrao: string = "../../../../assets/blank-profile-picture-973460_1280.webp"
+  fotoPadrao: string = "../../../../assets/no-profile.webp"
   
 
   formNovoFunc: FormGroup = this.fb.group({
-    nome: [null,[Validators.required]],
-    email: [null,[Validators.email]]
+    nome: ['',[Validators.required]],
+    email: ['',[Validators.required, Validators.email]],
+    foto: ['']
   })
+  
   foto!: File;
   fotoPreview!: string;
   novoFuncionario!: Funcionario;
+  naoEncontrado: boolean = false;
+  desabilitar: boolean = true;
 
   constructor(
     private route: ActivatedRoute, // acessar os parâmetros da rota ativa
@@ -57,37 +62,40 @@ export class FuncionarioComponent implements OnInit {
       func => {
         this.funcionario = func;
         this.formNovoFunc.setValue({
-          nome: func.nome,
-          email: func.email
+          nome: this.funcionario.nome,
+          email: this.funcionario.email,
+          foto: ''
           });
+
+          this.fotoPreview = this.funcionario.foto;
+          this.valorMudou();
+      }, (erro: HttpErrorResponse) => {
+          this.naoEncontrado = erro.status == 404;
       })
+
+
   }
 
   recuperarFoto(event: any): void{
     this.foto = event.target.files[0];
-    this.carregarPreview();
-  }
-
-  carregarPreview(): void{
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.readAsDataURL(this.foto);
-    reader.onload = () => {
-      this.funcionario.foto = reader.result as string;
-    }
+    reader.onload = () =>
+    this.fotoPreview = reader.result as string
   }
 
   async editarFunc(): Promise<void>{ 
     const matDialogRef = this.matDialog.open(SalvandoFuncionarioComponent);
     const snackBarRef = this.snackBar;
+
     this.novoFuncionario = this.formNovoFunc.value;
-    this.novoFuncionario.id = this.funcionario.id
+    this.novoFuncionario.id = this.funcionario.id;
+
     if(this.foto != undefined){
-         const linkNovaFoto = await this.funcService.uploadImagem(this.foto);
-         this.novoFuncionario.foto = linkNovaFoto;
-         console.log("foto != null")
+      this.funcService.deletarImagem(this.funcionario);
+      this.novoFuncionario.foto = await this.funcService.uploadImagem(this.foto);
     } else {
       this.novoFuncionario.foto = this.funcionario.foto;
-      console.log("foto")
     }
 
     this.funcService.atualizarFuncionario(this.novoFuncionario).subscribe(() => {
@@ -95,6 +103,18 @@ export class FuncionarioComponent implements OnInit {
       snackBarRef.open("Funcionário salvo com sucesso!", "",{duration: 3000})
     })
     
+    location.reload();
     // this.funcService.salvarFuncionario(this.novoFuncionario, this.foto).subscribe(func => console.log(func))
+  }
+
+  valorMudou(){
+    // valueChanges é um observable dos formgroups que retorna as modificações.
+    this.formNovoFunc.valueChanges.subscribe( valores => { // o parametro valores é um objeto que retorna os valores de cada campo do reactive forms
+      this.desabilitar = !(valores.nome != this.funcionario.nome || valores.email != this.funcionario.email || valores.foto.length > 0) || this.formNovoFunc.invalid;
+    })
+  }
+
+  removerFoto(){
+    this.fotoPreview = "";
   }
 }

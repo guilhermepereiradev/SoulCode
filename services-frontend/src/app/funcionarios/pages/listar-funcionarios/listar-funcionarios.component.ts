@@ -33,27 +33,18 @@ export class ListarFuncionariosComponent implements OnInit {
     this.recuperarFuncionarios();
   }
 
-
-  teste(){
-    
-  }
-  excluirFuncionario(id: number): void{
-    const referenciaDialogConfirm = this.dialog.open(ConfirmarExclusaoComponent);
+  excluirFuncionario(func: Funcionario): void{
+    const dialogConfirm = this.dialog.open(ConfirmarExclusaoComponent);
     let snackBarRef = this.snackBar;
-      referenciaDialogConfirm.afterClosed().subscribe(
-        result =>{
-          if(result){
-          this.funcService.deleteFuncionario(id).subscribe(
-            () => {
-              this.recuperarFuncionarios();
-            })
-            snackBarRef.open("Funcionário deletetado com sucesso!", "", {
-              duration: 3000,
-            })
-          }
-            
-    })
-    }
+    dialogConfirm.afterClosed().subscribe(
+      deletar =>{
+        if(deletar){
+          this.funcService.deleteFuncionario(func).subscribe(() => {this.recuperarFuncionarios()})
+          snackBarRef.open("Funcionário deletetado com sucesso!", "", {duration: 3000})
+        }
+      }
+    )
+  }
 
   
 

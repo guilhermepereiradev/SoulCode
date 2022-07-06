@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, mergeMap, Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
 //localhost:3000/funcionarios
@@ -22,8 +22,13 @@ export class FuncionarioService {
   }
 
   //http://localhost:3000/funcionarios/id
-  deleteFuncionario(id: number): Observable<any>{
-    return this.http.delete<any>(`${this.baseUrl}/${id}`);
+  deleteFuncionario(func: Funcionario): Observable<any>{
+    if(func.foto.length > 0){
+      return this.storage.refFromURL(func.foto).delete().pipe(
+        mergeMap( () => this.http.delete<any>(`${this.baseUrl}/${func.id}`))
+      )
+    }
+    return this.http.delete<any>(`${this.baseUrl}/${func.id}`);
   }
 
   getFuncionarioById(id: number): Observable<Funcionario>{
@@ -32,10 +37,14 @@ export class FuncionarioService {
 
 
   // RXJS Operators: funçoes que manipulam os dados que os observables te retornam
-  salvarFuncionario(func: Funcionario, foto: File | undefined): Observable<Promise<Observable<Funcionario>>>{
+  salvarFuncionario(func: Funcionario, foto?: File){
     // fazen requisição POST para salavar os dados do funcionario
     // @return o funcionario que acabou de ser salvo
     // pipe é utilizado para os operadores RXJS, map modifica cada dado retornado pelo obsevable
+
+    if(foto == undefined){
+      return this.http.post<Funcionario>(this.baseUrl, func)
+    }
 
     return this.http.post<Funcionario>(this.baseUrl, func).pipe(map(async (func) => {
       // 1º fazer o upload da imagem e recuperar o link gerado
@@ -69,5 +78,8 @@ export class FuncionarioService {
     //a propriedade ref é a referencia do arquivo no firebase
     const downloadURL = await dados.ref.getDownloadURL() // retorna um link pro acesso da imagem
     return downloadURL;
+  }
+  public deletarImagem(func: Funcionario){
+    this.storage.refFromURL(func.foto).delete();
   }
 }
