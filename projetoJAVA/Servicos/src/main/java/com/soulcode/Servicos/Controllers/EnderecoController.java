@@ -1,5 +1,6 @@
 package com.soulcode.Servicos.Controllers;
 
+import com.soulcode.Servicos.Models.Cliente;
 import com.soulcode.Servicos.Models.Endereco;
 import com.soulcode.Servicos.Services.ClienteService;
 import com.soulcode.Servicos.Services.EnderecoService;
@@ -61,7 +62,7 @@ public class EnderecoController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/enderecos/{idEndereco}")
+    @DeleteMapping("/endereco/{idEndereco}")
     public ResponseEntity<Void> excluirEnderecoPeloId(@PathVariable Integer idEndereco){
         enderecoService.excluirEndereco(idEndereco);
         return ResponseEntity.noContent().build();

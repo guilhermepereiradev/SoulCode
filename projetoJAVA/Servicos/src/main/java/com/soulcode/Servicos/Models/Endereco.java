@@ -10,7 +10,6 @@ import java.util.Optional;
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEndereco;
 
     @Column(nullable = false)
@@ -24,10 +23,6 @@ public class Endereco {
 
     @Column(nullable = false)
     private String uf;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "endereco")
-    private Cliente cliente;
 
     public Integer getIdEndereco() {
         return idEndereco;
@@ -67,13 +62,5 @@ public class Endereco {
 
     public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 }
