@@ -86,8 +86,6 @@ export class FuncionarioComponent implements OnInit {
 
   async editarFunc(): Promise<void>{ 
     const matDialogRef = this.matDialog.open(SalvandoFuncionarioComponent);
-    const snackBarRef = this.snackBar;
-
     this.novoFuncionario = this.formNovoFunc.value;
     this.novoFuncionario.id = this.funcionario.id;
 
@@ -100,10 +98,9 @@ export class FuncionarioComponent implements OnInit {
 
     this.funcService.atualizarFuncionario(this.novoFuncionario).subscribe(() => {
       matDialogRef.close();
-      snackBarRef.open("Funcionário salvo com sucesso!", "",{duration: 3000})
+      this.snackBar.open("Funcionário salvo com sucesso!", "",{duration: 3000})
     })
     
-    location.reload();
     // this.funcService.salvarFuncionario(this.novoFuncionario, this.foto).subscribe(func => console.log(func))
   }
 
