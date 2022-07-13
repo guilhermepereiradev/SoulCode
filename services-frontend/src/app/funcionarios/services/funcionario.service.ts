@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, mergeMap, Observable } from 'rxjs';
+import { BehaviorSubject, map, mergeMap, Observable, tap } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
+import { Route, Router } from '@angular/router';
 //localhost:3000/funcionarios
 
 @Injectable({
@@ -11,6 +12,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage'; // importaç�
 export class FuncionarioService {
 
   private readonly baseUrl: string = 'http://localhost:3000/funcionarios';
+  atualizarFuncionariosSub$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(
     private http: HttpClient,
@@ -25,11 +27,14 @@ export class FuncionarioService {
   deleteFuncionario(func: Funcionario): Observable<any>{
     if(func.foto.length > 0){
       return this.storage.refFromURL(func.foto).delete().pipe(
-        mergeMap( () => this.http.delete<any>(`${this.baseUrl}/${func.id}`))
+        mergeMap( () => this.http.delete<any>(`${this.baseUrl}/${func.id}`)),
+        tap((funcionarios) => {
+          this.atualizarFuncionariosSub$.next(true)
+        })
         //mergeMap tem a função de pegar dois ou mais objetos e transformar todos em um só
       )
     }
-    return this.http.delete<any>(`${this.baseUrl}/${func.id}`);
+    return this.http.delete<any>(`${this.baseUrl}/${func.id}`).pipe(tap(() => this.atualizarFuncionariosSub$.next(true)));
   }
 
   getFuncionarioById(id: number): Observable<Funcionario>{
@@ -61,10 +66,16 @@ export class FuncionarioService {
   }
 
   atualizarFuncionario(func: Funcionario, foto?: File): any{
-    // se a fiti não foi passada
+    // se a foto não foi passada
     
     if(foto == undefined){
-      return this.http.put<Funcionario>(`${this.baseUrl}/${func.id}`, func)
+      return this.http.put<Funcionario>(`${this.baseUrl}/${func.id}`, func).pipe(
+        //tap funciona como forEach, consome cada dado sem modificar
+        tap( (funcionario) => {
+          // next é a funcao de sucesso
+          this.atualizarFuncionariosSub$.next(true)
+        })
+      )
     } 
 
     // se ja existir uma foto ligada a esse funcionario, iremos deleta-la
@@ -80,6 +91,8 @@ export class FuncionarioService {
       funcionarioAtualizado.foto = linkFoto
 
       return this.atualizarFuncionario(funcionarioAtualizado)
+    }), tap( () => {
+      this.atualizarFuncionariosSub$.next(true);
     }))
   }
   
