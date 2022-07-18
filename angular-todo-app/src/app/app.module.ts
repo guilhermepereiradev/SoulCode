@@ -10,6 +10,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { TodoModule } from './todo/todo.module';
+import { TodosComponent } from './todo/pages/todos/todos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { MaterialModule } from './material/material.module';
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
