@@ -4,6 +4,7 @@ import { BehaviorSubject, map, mergeMap, Observable, tap } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage'; // importação do fireStorage
 import { Route, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 //localhost:3000/funcionarios
 
 @Injectable({
@@ -11,34 +12,58 @@ import { Route, Router } from '@angular/router';
 })
 export class FuncionarioService {
 
-  private readonly baseUrl: string = 'http://localhost:3000/funcionarios';
+  private readonly baseUrl: string = 'http://localhost:8080/servicos/funcionarios';
   atualizarFuncionariosSub$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(
     private http: HttpClient,
-    private storage: AngularFireStorage // objeto responsavél por salvar os arquivos no firebase
+    private storage: AngularFireStorage, // objeto responsavél por salvar os arquivos no firebase
+    private authService: AuthService,
   ) { }
 
   getFuncionarios(): Observable<Funcionario[]>{
-    return this.http.get<Funcionario[]>(this.baseUrl)
+    const token = this.authService.recuperarToken();
+    return this.http.get<Funcionario[]>(this.baseUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
+
 
   //http://localhost:3000/funcionarios/id
   deleteFuncionario(func: Funcionario): Observable<any>{
+    const token = this.authService.recuperarToken()
+
     if(func.foto.length > 0){
       return this.storage.refFromURL(func.foto).delete().pipe(
-        mergeMap( () => this.http.delete<any>(`${this.baseUrl}/${func.id}`)),
+        mergeMap( () => {
+          return this.http.delete<any>(`${this.baseUrl}/${func.idFuncionario}`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+        }),
         tap((funcionarios) => {
           this.atualizarFuncionariosSub$.next(true)
         })
         //mergeMap tem a função de pegar dois ou mais objetos e transformar todos em um só
       )
     }
-    return this.http.delete<any>(`${this.baseUrl}/${func.id}`).pipe(tap(() => this.atualizarFuncionariosSub$.next(true)));
+    return this.http.delete<any>(`${this.baseUrl}/${func.idFuncionario}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).pipe(tap(() => this.atualizarFuncionariosSub$.next(true)));
   }
 
   getFuncionarioById(id: number): Observable<Funcionario>{
-    return this.http.get<Funcionario>(`${this.baseUrl}/${id}`);
+    const token = this.authService.recuperarToken();
+    return this.http.get<Funcionario>(`${this.baseUrl}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
   }
 
 
@@ -48,11 +73,19 @@ export class FuncionarioService {
     // @return o funcionario que acabou de ser salvo
     // pipe é utilizado para os operadores RXJS, map modifica cada dado retornado pelo obsevable
 
+    const token = this.authService.recuperarToken()
     if(foto == undefined){
-      return this.http.post<Funcionario>(this.baseUrl, func)
+      return this.http.post<Funcionario>(`${this.baseUrl}/5`, func, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }})
     }
 
-    return this.http.post<Funcionario>(this.baseUrl, func).pipe(map(async (func) => {
+    return this.http.post<Funcionario>(`${this.baseUrl}/5`, func, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).pipe(map(async (func) => {
       // 1º fazer o upload da imagem e recuperar o link gerado
         if(foto != undefined){  
         const linkFotoFirabase = await this.uploadImagem(foto);
@@ -67,9 +100,13 @@ export class FuncionarioService {
 
   atualizarFuncionario(func: Funcionario, foto?: File): any{
     // se a foto não foi passada
-    
+    const token = this.authService.recuperarToken();
     if(foto == undefined){
-      return this.http.put<Funcionario>(`${this.baseUrl}/${func.id}`, func).pipe(
+      return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).pipe(
         //tap funciona como forEach, consome cada dado sem modificar
         tap( (funcionario) => {
           // next é a funcao de sucesso
@@ -85,7 +122,11 @@ export class FuncionarioService {
       });
     }
 
-    return this.http.put<Funcionario>(`${this.baseUrl}/${func.id}`, func).pipe(
+    return this.http.put<Funcionario>(`${this.baseUrl}/${func.idFuncionario}`, func, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).pipe(
       mergeMap(async (funcionarioAtualizado) => {
       const linkFoto = await this.uploadImagem(foto)
       funcionarioAtualizado.foto = linkFoto
